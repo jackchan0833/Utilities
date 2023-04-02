@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D89413B-24D0-4092-ADC3-B0E137BF5EF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JC.Utilities</RootNamespace>
+    <AssemblyName>Utilities</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppHandler.cs" />
+    <Compile Include="BizRequest.cs" />
+    <Compile Include="BizResponse.cs" />
+    <Compile Include="BufferHandler.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Constants\CategoryNames.cs" />
+    <Compile Include="Constants\CodeNames.cs" />
+    <Compile Include="Constants\DefaultValues.cs" />
+    <Compile Include="Constants\Errors.cs" />
+    <Compile Include="Constants\Messages.cs" />
+    <Compile Include="Constants\PermissionType.cs" />
+    <Compile Include="Constants\RegularExpression.cs" />
+    <Compile Include="Constants\StoreFiles.cs" />
+    <Compile Include="DataHandler.cs" />
+    <Compile Include="DateTimeHandler.cs" />
+    <Compile Include="EnumHandler.cs" />
+    <Compile Include="ErrorInfo.cs" />
+    <Compile Include="ExecutionResult.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="FileHandlerCSV.cs" />
+    <Compile Include="FileHandlerJson.cs" />
+    <Compile Include="FileHandlerStoreFile.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="MessageInfo.cs" />
+    <Compile Include="Net\SocketActionState.cs" />
+    <Compile Include="Net\StateObject.cs" />
+    <Compile Include="Net\TCPClientHelper.cs" />
+    <Compile Include="Net\TCPClientSample.cs" />
+    <Compile Include="Net\TCPServerHelper.cs" />
+    <Compile Include="PageValidator.cs" />
+    <Compile Include="Pagination.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchCriteria.cs" />
+    <Compile Include="SearchResult.cs" />
+    <Compile Include="ServiceExtensions\IServiceCollection.cs" />
+    <Compile Include="ServiceExtensions\SericeLifeTime.cs" />
+    <Compile Include="ServiceExtensions\ServiceCollection.cs" />
+    <Compile Include="ServiceExtensions\ServiceHelper.cs" />
+    <Compile Include="ServiceExtensions\ServiceInfo.cs" />
+    <Compile Include="StoreFileInfo.cs" />
+    <Compile Include="StringHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
