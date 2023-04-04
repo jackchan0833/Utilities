@@ -43,7 +43,7 @@ namespace JC.Utilities.Excel
         /// <param name="listInsertCells">The cells to insert.</param>
         /// <param name="templateExcelFile">The excel template file, that based to generate the excel.</param>
         public static void ExportAsExcel(string destSaveFilePath, List<string> headers, List<List<string>> rowDatas,
-            List<ExcelCellFormat> listCellFormats, int startDataRowIndex, List<ExcelCellInfo> listInsertCells = null, 
+            List<ExcelCellFormat> listCellFormats = null, int startDataRowIndex = 0, List<ExcelCellInfo> listInsertCells = null, 
             string templateExcelFile = "Template.xlsx")
         {
             IWorkbook workBook = null;

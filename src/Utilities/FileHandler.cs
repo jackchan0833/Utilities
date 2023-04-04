@@ -139,7 +139,7 @@ namespace JC.Utilities
         public static void CreateParentDirectory(string filePath)
         {
             string parentDirectory = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(parentDirectory))
+            if (!string.IsNullOrEmpty(parentDirectory) && !Directory.Exists(parentDirectory))
             {
                 Directory.CreateDirectory(parentDirectory);
             }

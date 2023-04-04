@@ -60,6 +60,11 @@ namespace JC.Utilities.Excel.NPOI
             }
             return workBook;
         }
+        /// <summary>
+        /// Save specified workbook to destionation file.
+        /// </summary>
+        /// <param name="workBook">The specified workbook to save.</param>
+        /// <param name="destFilePath">The destination file.</param>
         public static void SaveWorkBook(IWorkbook workBook, string destFilePath)
         {
             using (FileStream file = new FileStream(destFilePath, FileMode.Create, FileAccess.ReadWrite))
@@ -67,6 +72,10 @@ namespace JC.Utilities.Excel.NPOI
                 workBook.Write(file);
             }
         }
+        /// <summary>
+        /// Deletes all worksheets from specified workbook.
+        /// </summary>
+        /// <param name="workBook"></param>
         public static void DeleteAllSheets(IWorkbook workBook)
         {
             int totalSheetCount = GetWorksheetCount(workBook);
@@ -75,6 +84,11 @@ namespace JC.Utilities.Excel.NPOI
                 workBook.RemoveSheetAt(i);
             }
         }
+        /// <summary>
+        /// Gets worksheet count of specified workbook.
+        /// </summary>
+        /// <param name="workBook">The workbook to counter.</param>
+        /// <returns>The count of worksheets.</returns>
         public static int GetWorksheetCount(IWorkbook workBook)
         {
             int count = 0;
@@ -85,6 +99,17 @@ namespace JC.Utilities.Excel.NPOI
             }
             return count;
         }
+        /// <summary>
+        /// Creates cells for specified worksheet.
+        /// </summary>
+        /// <param name="workBook">The relative workbook of worksheet.</param>
+        /// <param name="workSheet">The specified worksheet.</param>
+        /// <param name="totalRowsCount">The total count of rows to create.</param>
+        /// <param name="totalColumnsCount">The total count of columns to create.</param>
+        /// <param name="fontSize">The font size of cell.</param>
+        /// <param name="fontName">The font name of cell.</param>
+        /// <param name="fontColor">The font color of cell.</param>
+        /// <param name="dataFormat">The data format of cell.</param>
         public static void CreateRowCells(IWorkbook workBook, ISheet workSheet, int totalRowsCount, int totalColumnsCount, int? fontSize = null, string fontName = null, System.Drawing.Color? fontColor = null, string dataFormat = null)
         {
             IFont font = workBook.CreateFont();
@@ -110,7 +135,17 @@ namespace JC.Utilities.Excel.NPOI
             }
             CreateRowCells(workSheet, totalRowsCount, totalColumnsCount, cellStyle);
         }
-        public static void CreateRowCells(ISheet workSheet, int totalRowsCount, int totalColumnsCount, ICellStyle defaultCellStyle, int offsetRowCount = 0, int offsetColumnCount = 0, bool overwriteExistCell = true)
+        /// <summary>
+        /// Creates cells for specified worksheet.
+        /// </summary>
+        /// <param name="workSheet">The specified worksheet.</param>
+        /// <param name="totalRowsCount">The total count of rows to create.</param>
+        /// <param name="totalColumnsCount">The total count of columns to create.</param>
+        /// <param name="cellStyle">The cell style to create.</param>
+        /// <param name="offsetRowCount">The offset row count before to create cell.</param>
+        /// <param name="offsetColumnCount">The offset column count before to create cell.</param>
+        /// <param name="overwriteExistCell">Whether overwrite existing cell when create.</param>
+        public static void CreateRowCells(ISheet workSheet, int totalRowsCount, int totalColumnsCount, ICellStyle cellStyle, int offsetRowCount = 0, int offsetColumnCount = 0, bool overwriteExistCell = true)
         {
             if (overwriteExistCell)
             {
@@ -120,7 +155,7 @@ namespace JC.Utilities.Excel.NPOI
                     for (int j = offsetColumnCount; j < totalColumnsCount; j++)
                     {
                         var cell = row.CreateCell(j);
-                        cell.CellStyle = defaultCellStyle;
+                        cell.CellStyle = cellStyle;
                     }
                 }
             }
@@ -141,11 +176,20 @@ namespace JC.Utilities.Excel.NPOI
                         {
                             cell = row.CreateCell(j);
                         }
-                        cell.CellStyle = defaultCellStyle;
+                        cell.CellStyle = cellStyle;
                     }
                 }
             }
         }
+        /// <summary>
+        /// Sets the cell's style.
+        /// </summary>
+        /// <param name="workSheet">The specified worksheet of cell.</param>
+        /// <param name="startColumnIndex">The start column index to set.</param>
+        /// <param name="startRowIndex">The start row index to set.</param>
+        /// <param name="endColumnIndex">The end column index to set.</param>
+        /// <param name="endRowIndex">The end row index to set.</param>
+        /// <param name="cellStyle">The cell style.</param>
         public static void SetCellStyle(ISheet workSheet, int startColumnIndex, int startRowIndex, int endColumnIndex, int endRowIndex, ICellStyle cellStyle)
         {
             for (int j = startRowIndex; j <= endRowIndex; j++)
@@ -167,6 +211,11 @@ namespace JC.Utilities.Excel.NPOI
             }
 
         }
+        /// <summary>
+        /// Gets the recognize letter 'A' of specified column.
+        /// </summary>
+        /// <param name="columnIndex">The specified column.</param>
+        /// <returns>The column letter.</returns>
         public static string GetColumnLetter(int columnIndex)
         {
             int columnNumber = columnIndex;
@@ -181,12 +230,18 @@ namespace JC.Utilities.Excel.NPOI
 
             return columnName;
         }
+        /// <summary>
+        /// Sets the cell border's style.
+        /// </summary>
         public static void SetCellBorder(IWorkbook workBook, ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
             int endColumnIndex = GetColumnIndex(endColumnName);
             SetCellBorder(workBook, workSheet, startColumnIndex, startRowIndex, endColumnIndex, endRowIndex);
         }
+        /// <summary>
+        /// Sets the cell border's style.
+        /// </summary>
         public static void SetCellBorder(IWorkbook workBook, ISheet workSheet, int startColumnIndex, int startRowIndex, int endColumnIndex, int endRowIndex)
         {
             for (int j = startRowIndex; j <= endRowIndex; j++)
@@ -217,6 +272,9 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Sets the cell's background.
+        /// </summary>
         public static void SetCellBackground(IWorkbook workBook, ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex, System.Drawing.Color color)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
@@ -263,11 +321,17 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Sets the cell's background.
+        /// </summary>
         public static ICellStyle SetCellBackground(IWorkbook workBook, ICellStyle cellStyle, System.Drawing.Color color)
         {
             GetExcelColor(workBook, color, out bool isXSSF, out XSSFColor excelColor, out short colorIndex);
             return SetCellBackground(cellStyle, isXSSF, excelColor, colorIndex);
         }
+        /// <summary>
+        /// Sets the cell's background.
+        /// </summary>
         public static ICellStyle SetCellBackground(ICellStyle cellStyle, bool isXSSF, XSSFColor excelXSSFColor, short hSSFColorIndex)
         {
             if (isXSSF)
@@ -288,23 +352,10 @@ namespace JC.Utilities.Excel.NPOI
                 return xCellStyle;
             }
         }
-        public static void GetExcelColor(IWorkbook workBook, System.Drawing.Color color, out bool isXSSF, out XSSFColor excelColor, out short colorIndex)
-        {
-            isXSSF = workBook is XSSFWorkbook;
-            excelColor = null;
-            colorIndex = 0;
-            if (isXSSF)
-            {
-                excelColor = new XSSFColor(color);
-            }
-            else
-            {
-                HSSFPalette palette = ((HSSFWorkbook)workBook).GetCustomPalette();
-                colorIndex = HSSFColor.Teal.Index;
-                palette.SetColorAtIndex(colorIndex, color.R, color.G, color.B);
-            }
-        }
-        
+
+        /// <summary>
+        /// Sets specified cell's value.
+        /// </summary>
         public static void SetCellValue(ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex, object value)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
@@ -317,6 +368,9 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Sets specified cell's value.
+        /// </summary>
         public static void SetCellValue(ISheet workSheet, int rowIndex, int columnIndex, object value)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -346,34 +400,55 @@ namespace JC.Utilities.Excel.NPOI
                 cell.SetCellValue((string)value);
             }
         }
+        /// <summary>
+        /// Sets specified cell's value.
+        /// </summary>
         public static void SetCellValue(ISheet workSheet, string columnName, int rowIndex, object value)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetCellValue(workSheet, rowIndex, columnIndex, value);
         }
+        /// <summary>
+        /// Sets row's height.
+        /// </summary>
         public static void SetRowHeight(ISheet workSheet, int rowIndex, short height)
         {
             var row = workSheet.GetRow(rowIndex);
             row.Height = height;
         }
+        /// <summary>
+        /// Sets cell's width.
+        /// </summary>
         public static void SetColumnWidth(ISheet workSheet, string columnName, int width)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetColumnWidth(workSheet, columnIndex, width);
         }
+        /// <summary>
+        /// Sets cell's width.
+        /// </summary>
         public static void SetColumnWidth(ISheet workSheet, int columnIndex, int width)
         {
             workSheet.SetColumnWidth(columnIndex, width);
         }
+        /// <summary>
+        /// Sets cell to auto fit the size.
+        /// </summary>
         public static void SetColumnAutoFit(ISheet workSheet, string columnName)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetColumnAutoFit(workSheet, columnIndex);
         }
+        /// <summary>
+        /// Sets cell to auto fit the size.
+        /// </summary>
         public static void SetColumnAutoFit(ISheet workSheet, int columnIndex)
         {
             workSheet.AutoSizeColumn(columnIndex);
         }
+        /// <summary>
+        /// Sets cell with specified number format.
+        /// </summary>
         public static void SetCellNumberFormat(IWorkbook workBook, ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex, string numberFormat)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
@@ -386,11 +461,17 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Sets cell with specified number format.
+        /// </summary>
         public static void SetCellNumberFormat(IWorkbook workBook, ISheet workSheet, string columnName, int rowIndex, string numberFormat)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetCellNumberFormat(workBook, workSheet, rowIndex, columnIndex, numberFormat);
         }
+        /// <summary>
+        /// Sets cell with specified number format.
+        /// </summary>
         public static void SetCellNumberFormat(IWorkbook workBook, ISheet workSheet, int rowIndex, int columnIndex, string numberFormat)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -403,11 +484,17 @@ namespace JC.Utilities.Excel.NPOI
             CellUtil.SetCellStyleProperty(cell, CellUtil.DATA_FORMAT, format.GetFormat(numberFormat));
         }
 
+        /// <summary>
+        /// Sets cell formula to specified cell.
+        /// </summary>
         public static void SetCellFormula(ISheet workSheet, string columnName, int rowIndex, string cellFormula)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetCellFormula(workSheet, rowIndex, columnIndex, cellFormula);
         }
+        /// <summary>
+        /// Sets cell formula to specified cell.
+        /// </summary>
         public static void SetCellFormula(ISheet workSheet, int rowIndex, int columnIndex, string cellFormula)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -420,12 +507,18 @@ namespace JC.Utilities.Excel.NPOI
             cell.SetCellFormula(cellFormula?.TrimStart('='));
         }
 
+        /// <summary>
+        /// Creates a new font style and it to workbook's font style table, and set it to specified cell.
+        /// </summary>
         public static void SetCellFont(IWorkbook workBook, ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex, System.Drawing.Color? fontColor, int? fontSize, string fontName, bool? isBlod)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
             int endColumnIndex = GetColumnIndex(endColumnName);
             SetCellFont(workBook, workSheet, startColumnIndex, startRowIndex, endColumnIndex, endRowIndex, fontColor, fontSize, fontName, isBlod);
         }
+        /// <summary>
+        /// Creates a new font style and it to workbook's font style table, and set it to specified cell.
+        /// </summary>
         public static void SetCellFont(IWorkbook workBook, ISheet workSheet, int startColumnIndex, int startRowIndex, int endColumnIndex, int endRowIndex, System.Drawing.Color? fontColor, int? fontSize, string fontName, bool? isBlod)
         {
             for (int i = startColumnIndex; i <= endColumnIndex; i++)
@@ -436,11 +529,17 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Creates a new font style and it to workbook's font style table, and set it to specified cell.
+        /// </summary>
         public static void SetCellFont(IWorkbook workBook, ISheet workSheet, string columnName, int rowIndex, System.Drawing.Color? fontColor, int? fontSize, string fontName, bool? isBlod)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetCellFont(workBook, workSheet, rowIndex, columnIndex, fontColor, fontSize, fontName, isBlod);
         }
+        /// <summary>
+        /// Creates a new font style and it to workbook's font style table, and set it to specified cell.
+        /// </summary>
         public static void SetCellFont(IWorkbook workBook, ISheet workSheet, int rowIndex, int columnIndex, System.Drawing.Color? fontColor, int? fontSize, string fontName, bool? isBlod)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -473,6 +572,9 @@ namespace JC.Utilities.Excel.NPOI
             cellStyle.SetFont(font);
             cell.CellStyle = cellStyle;
         }
+        /// <summary>
+        /// Creates a new cell style and it to workbook's style table. 
+        /// </summary>
         public static ICellStyle CreateCellStyle(IWorkbook workBook, System.Drawing.Color? fontColor, int? fontSize, string fontName, bool? isBlod, bool? hasBorder, string dataFormat, System.Drawing.Color? backgroundColor,
             bool? isHorizontalCenter, bool? isVerticalCenter)
         {
@@ -528,6 +630,9 @@ namespace JC.Utilities.Excel.NPOI
             }
             return cellStyle;
         }
+        /// <summary>
+        /// Sets specified font's color.
+        /// </summary>
         public static void SetFontColor(IWorkbook workBook, IFont font, System.Drawing.Color? fontColor)
         {
             if (fontColor == null)
@@ -549,15 +654,24 @@ namespace JC.Utilities.Excel.NPOI
                 font.Color = HSSFColor.Teal.Index;
             }
         }
+        /// <summary>
+        /// Hidden specified column.
+        /// </summary>
         public static void HiddenColumn(ISheet workSheet, string columnName, bool hidden = true)
         {
             int columnIndex = GetColumnIndex(columnName);
             HiddenColumn(workSheet, columnIndex, hidden);
         }
+        /// <summary>
+        /// Hidden specified column.
+        /// </summary>
         public static void HiddenColumn(ISheet workSheet, int columnIndex, bool hidden = true)
         {
             workSheet.SetColumnHidden(columnIndex, hidden);
         }
+        /// <summary>
+        /// Hidden specified columns.
+        /// </summary>
         public static void HiddenColumns(ISheet workSheet, int startColumnIndex, int endColumnIndex, bool isHidden)
         {
             for (int i = startColumnIndex; i <= endColumnIndex; i++)
@@ -565,6 +679,9 @@ namespace JC.Utilities.Excel.NPOI
                 HiddenColumn(workSheet, i, isHidden);
             }
         }
+        /// <summary>
+        /// Gets specified cell.
+        /// </summary>
         public static ICell GetCell(ISheet workSheet, int rowIndex, int columnIndex)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -574,6 +691,9 @@ namespace JC.Utilities.Excel.NPOI
             }
             return row.GetCell(columnIndex);
         }
+        /// <summary>
+        /// Gets specified cell's style.
+        /// </summary>
         public static ICellStyle GetCellStyle(ISheet workSheet, int rowIndex, int columnIndex)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -588,6 +708,9 @@ namespace JC.Utilities.Excel.NPOI
             }
             return cell.CellStyle;
         }
+        /// <summary>
+        /// Gets specified cell value's text.
+        /// </summary>
         public static string GetCellValueText(CellValue cellValue)
         {
             if (cellValue == null)
@@ -615,6 +738,9 @@ namespace JC.Utilities.Excel.NPOI
                 return cellValue.StringValue?.Trim();
             }
         }
+        /// <summary>
+        /// Gets specified cell's text.
+        /// </summary>
         public static string GetCellText(ICell cell)
         {
             if (cell == null)
@@ -642,6 +768,9 @@ namespace JC.Utilities.Excel.NPOI
                 return cell.StringCellValue?.Trim();
             }
         }
+        /// <summary>
+        /// Gets specified cell's text.
+        /// </summary>
         public static string GetCellText(ISheet workSheet, int rowIndex, int columnIndex)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -656,11 +785,17 @@ namespace JC.Utilities.Excel.NPOI
             }
             return GetCellText(cell);
         }
+        /// <summary>
+        /// Gets specified cell's text.
+        /// </summary>
         public static string GetCellText(ISheet workSheet, string columnName, int rowIndex)
         {
             int columnIndex = GetColumnIndex(columnName);
             return GetCellText(workSheet, rowIndex, columnIndex);
         }
+        /// <summary>
+        /// Sets specified cell's text alignment.
+        /// </summary>
         public static void SetCellTextAlignment(ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex, bool isHorizontalCenter = true, bool isVerticalCenter = false)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
@@ -673,6 +808,9 @@ namespace JC.Utilities.Excel.NPOI
                 }
             }
         }
+        /// <summary>
+        /// Sets specified cell's text alignment.
+        /// </summary>
         public static void SetCellTextAlignment(ISheet workSheet, int rowIndex, int columnIndex, bool isHorizontalCenter = true, bool isVerticalCenter = false)
         {
             var row = workSheet.GetRow(rowIndex);
@@ -690,11 +828,17 @@ namespace JC.Utilities.Excel.NPOI
                 CellUtil.SetVerticalAlignment(cell, VerticalAlignment.Center);
             }
         }
+        /// <summary>
+        /// Sets specified cell's text alignment.
+        /// </summary>
         public static void SetCellTextAlignment(ISheet workSheet, string columnName, int rowIndex, bool isHorizontalCenter = true, bool isVerticalCenter = false)
         {
             int columnIndex = GetColumnIndex(columnName);
             SetCellTextAlignment(workSheet, rowIndex, columnIndex, isHorizontalCenter, isVerticalCenter);
         }
+        /// <summary>
+        /// Merge the specified cells.
+        /// </summary>
         public static void MergeCell(ISheet workSheet, int startColumnIndex, int startRowIndex, int endColumnIndex, int endRowIndex)
         {
             if (startColumnIndex == endColumnIndex && startRowIndex == endRowIndex)
@@ -704,59 +848,68 @@ namespace JC.Utilities.Excel.NPOI
             var range = new CellRangeAddress(startRowIndex, endRowIndex, startColumnIndex, endColumnIndex);
             workSheet.AddMergedRegion(range);
         }
+        /// <summary>
+        /// Merge the specified cells.
+        /// </summary>
         public static void MergeCell(ISheet workSheet, string startColumnName, int startRowIndex, string endColumnName, int endRowIndex)
         {
             int startColumnIndex = GetColumnIndex(startColumnName);
             int endColumnIndex = GetColumnIndex(endColumnName);
             MergeCell(workSheet, startColumnIndex, startRowIndex, endColumnIndex, endRowIndex);
         }
+        /// <summary>
+        /// Freeze the specified rows.
+        /// </summary>
         public static void FrezeeRows(ISheet workSheet, int topRows)
         {
             // Freeze just one row
             //sheet1.CreateFreezePane(0, 1, 0, 1);
             workSheet.CreateFreezePane(0, 1, 0, topRows);
         }
+        /// <summary>
+        /// Freeze the specified columns.
+        /// </summary>
         public static void FrezeeColumns(ISheet workSheet, int leftColumnCount)
         {
             // Freeze just one column
             //sheet2.CreateFreezePane(1, 0, 1, 0);
             workSheet.CreateFreezePane(1, 0, leftColumnCount, 0);
         }
+        /// <summary>
+        /// Freeze the specified columns and rows.
+        /// </summary>
+        /// <param name="workSheet">The specified worksheet.</param>
+        /// <param name="rowCount">The freeze rows.</param>
+        /// <param name="columnCount">The freeze columns.</param>
         public static void FrezeeRowColumns(ISheet workSheet, int rowCount, int columnCount)
         {
             workSheet.CreateFreezePane(columnCount, rowCount);
         }
+        /// <summary>
+        /// Evalucate all cells value of specified workbook.
+        /// </summary>
+        /// <param name="workBook"></param>
         public static void EvaluateAllFormula(IWorkbook workBook)
         {
             workBook.GetCreationHelper().CreateFormulaEvaluator().EvaluateAll(); //计算公式
         }
+        /// <summary>
+        /// Evalucate the cell value of specified cell.
+        /// </summary>
+        /// <param name="workBook">The relative workbook.</param>
+        /// <param name="cell">The cell to evalucate.</param>
+        /// <returns>The string value of cell.</returns>
         public static string EvaluateCellFormula(IWorkbook workBook, ICell cell)
         {
             var eval = workBook.GetCreationHelper().CreateFormulaEvaluator();
             var cellValue = eval.Evaluate(cell);
             return GetCellValueText(cellValue);
         }
-        public static string EvaluateCellFormula(string cellFormula, string cellDataFormat)
-        {
-            IWorkbook workBook = null;
-            try
-            {
-                workBook = CreateNewWorkbook();
-                var workSheet = workBook.CreateSheet();
-                var cell = workSheet.CreateRow(0).CreateCell(0);
-                SetCellNumberFormat(workBook, workSheet, 0, 0, cellDataFormat);
-                SetCellFormula(workSheet, 0, 0, cellFormula);
-                cell = workSheet.GetRow(0).GetCell(0);
-                return EvaluateCellFormula(workBook, cell);
-            }
-            finally
-            {
-                if (workBook != null)
-                {
-                    workBook.Close();
-                }
-            }
-        }
+        /// <summary>
+        /// Gets column index with specified column name 'A'.
+        /// </summary>
+        /// <param name="columnName">The specified column name.</param>
+        /// <returns>The column index.</returns>
         public static int GetColumnIndex(string columnName)
         {
             int columnIndex = 0;
@@ -769,6 +922,22 @@ namespace JC.Utilities.Excel.NPOI
                 mod *= baseValue;
             }
             return columnIndex - 1;
+        }
+        private static void GetExcelColor(IWorkbook workBook, System.Drawing.Color color, out bool isXSSF, out XSSFColor excelColor, out short colorIndex)
+        {
+            isXSSF = workBook is XSSFWorkbook;
+            excelColor = null;
+            colorIndex = 0;
+            if (isXSSF)
+            {
+                excelColor = new XSSFColor(color);
+            }
+            else
+            {
+                HSSFPalette palette = ((HSSFWorkbook)workBook).GetCustomPalette();
+                colorIndex = HSSFColor.Teal.Index;
+                palette.SetColorAtIndex(colorIndex, color.R, color.G, color.B);
+            }
         }
     }
 }

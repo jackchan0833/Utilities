@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesTest", "UnitTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Excel", "Utilities.Excel\Utilities.Excel.csproj", "{F618332B-E2DC-4B05-BA4B-89E09A412D81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesExcelTest", "UnitTests\UtilitiesExcelTest\UtilitiesExcelTest.csproj", "{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,17 @@ Global
 		{F618332B-E2DC-4B05-BA4B-89E09A412D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F618332B-E2DC-4B05-BA4B-89E09A412D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F618332B-E2DC-4B05-BA4B-89E09A412D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{042629D7-90DB-4C5A-93A2-E61207B01E79} = {8F0D0FA0-9E39-4CDD-A723-F687BD6CD757}
+		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E} = {8F0D0FA0-9E39-4CDD-A723-F687BD6CD757}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6729D10-08D8-4DB7-92DA-302776951604}
