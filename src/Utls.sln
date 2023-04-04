@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Excel", "Utilitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesExcelTest", "UnitTests\UtilitiesExcelTest\UtilitiesExcelTest.csproj", "{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.WPF", "Utilities.WPF\Utilities.WPF.csproj", "{81AF82C4-1925-4B98-AEBC-7509B1D8DE86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{604EC7BB-8BAC-4446-BDF6-ABE7C7A7F51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AF82C4-1925-4B98-AEBC-7509B1D8DE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AF82C4-1925-4B98-AEBC-7509B1D8DE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AF82C4-1925-4B98-AEBC-7509B1D8DE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AF82C4-1925-4B98-AEBC-7509B1D8DE86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

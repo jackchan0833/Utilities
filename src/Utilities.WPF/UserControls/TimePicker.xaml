@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="JC.Utilities.WPF.UserControls.TimePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JC.Utilities.WPF.UserControls"
+             xmlns:ext="clr-namespace:JC.Utilities.WPF.Extensions"
+             mc:Ignorable="d" 
+             d:DesignHeight="26" d:DesignWidth="100">
+    <Border Height="26" Background="White" BorderThickness="1" BorderBrush="Gray">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBox Width="22" Text="00" Margin="0" Padding="2,4,2,4" x:Name="txtHour" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" MaxLength="2"
+                     TextChanged="txtHour_TextChanged" Focusable="True" GotFocus="txtHour_Focused"></TextBox>
+            <TextBlock Text=":" Margin="0" Width="5" Padding="0,0,0,1" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBox Width="22" Text="00" Margin="0" Padding="2,4,2,4" x:Name="txtMinute" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" MaxLength="2"
+                     TextChanged="txtMinute_TextChanged" Focusable="True" GotFocus="txtMinute_Focused"></TextBox>
+            <StackPanel Width="30" Orientation="Horizontal" HorizontalAlignment="Left" x:Name="stackPanelSeconds">
+                <TextBlock Text=":" Margin="0" Width="5" Padding="0,0,0,1" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="22" Text="00" Margin="0" Padding="2,4,2,4" x:Name="txtSecond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" MaxLength="2"
+                     TextChanged="txtSecond_TextChanged" Focusable="True" GotFocus="txtSecond_Focused"></TextBox>
+            </StackPanel>
+            <StackPanel Width="20">
+                <ext:ExtImage Margin="0,3,0,0" Width="17" Height="8" Source="/Assets/Images/time_up.png" VerticalAlignment="Top"
+                                          Cursor="Hand" Clicked="btnTimeIncrement_Click">
+                </ext:ExtImage>
+                <ext:ExtImage Margin="0,3,0,0" Width="17" Height="8" Source="/Assets/Images/time_down.png" VerticalAlignment="Bottom"
+                                         Cursor="Hand" Clicked="btnTimeDecrement_Click">
+                </ext:ExtImage>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>
